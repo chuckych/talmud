@@ -1,0 +1,99 @@
+<form action="?p=procesar.php" method="post" id="avanzado_c">
+    <div class="flex-column align-items-center justify-content-center w-100">
+        <div class="animate__animated animate__fadeIn animate__delay-1s">
+            <div class="card shadow-sm border-0 bg-danger text-white">
+                <div class="p-4">
+                    <p class="card-text fz12" id="pregunta">¿Cuál de las conclusiones puede ser inferida con cierta
+                        seguridad, a partir del siguiente recorte periodístico?</p>
+                </div>
+            </div>
+            <div class="card mt-2 border-0">
+                <div class="p-4">
+                    <p class="card-text text-secondary fw400 fst-italic">Los médicos que investigan el brote de una
+                        intoxicación por comida en mal estado han descubierto que cuatro de las personas que han
+                        presentado síntomas de intoxicación habían comido en el restaurant “El Tío Bueno” el día
+                        anterior, y todas ellas habían ordenado pescado.<br>Cualquier establecimiento que esté
+                        relacionado con problemas de intoxicación en la comida ofrecida será clausurado por las
+                        autoridades sanitarias hasta que sea inspeccionado y dado de alta para funcionar. Hoy el
+                        restaurant “El Tío Bueno” permanecerá cerrado.</p>
+                </div>
+            </div>
+            <div class="card mt-2 border-0 qtn_ca"></div>
+            <div class="card mt-2 border-0 qtn_cb"></div>
+            <div class="card mt-2 border-0 qtn_cc"></div>
+            <div class="card mt-2 border-0 qtn_cd"></div>
+        </div>
+        <div class="progress invisible mt-4">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75"
+                aria-valuemin="0" aria-valuemax="75">75%</div>
+        </div>
+        <div class="d-flex justify-content-end pt-4">
+            <div class="me-4" id="respuesta"></div>
+            <button
+                class="animate__animated animate__fadeInRight btn btn-outline-danger h80 w200 shadow border border-4 border-danger fz13"
+                id="submit">SIGUIENTE</button>
+        </div>
+    </div>
+</form>
+<script>
+    $('.container').addClass('p-3')
+    function cardQtns(id, qtn, value) {
+        return `<div class="card-body shadow-sm pointer">
+        <div class="form-check">
+            <input class="form-check-input pointer" type="radio" id="`+ id + `" name="qtn" value="` + value + `">
+            <label class="form-check-label pointer ms-2" for="`+ id + `"><p class="card-text text-secondary fw400">` + qtn + `</p></label>
+        </div>
+    </div>`
+    }
+    let value_ca = '1'
+    let qtn_ca = '<span class="items">a)</span> La fuente de la ola de intoxicaciones es el restaurant “El Tío Bueno”.'
+    $('.qtn_ca').html(cardQtns('qtn_ca', qtn_ca, value_ca))
+
+    let value_cb = '2'
+    let qtn_cb = '<span class="items">b)</span> El pescado fue la fuente de la ola de intoxicaciones'
+    $('.qtn_cb').html(cardQtns('qtn_cb', qtn_cb, value_cb))
+
+    let value_cc = '3'
+    let qtn_cc = '<span class="items">c)</span> El restaurante “El Tío Bueno” fue clausurado por los inspectores.'
+    $('.qtn_cc').html(cardQtns('qtn_cc', qtn_cc, value_cc))
+
+    let value_cd = '4'
+    let qtn_cd = 'Ninguna de las conclusiones puede ser inferida del recorte periodístico de manera confiable o segura.'
+    $('.qtn_cd').html(cardQtns('qtn_cd', qtn_cd, value_cd))
+
+    setTimeout(() => {
+        $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')
+    }, 700);
+
+    $("#avanzado_c").bind("submit", function (e) {
+        e.preventDefault()
+        $.ajax({
+            type: $(this).attr("method"),
+            url: $(this).attr("action") + '&v=' + $.now(),
+            data: $(this).serialize() + '&question=avanzado_c',
+            dataType: "json",
+            beforeSend: function (data) {
+                $('#submit').prop('disabled', true)
+            },
+            success: function (data) {
+                if (data.status == "ok") {
+                    $('#submit').prop('disabled', false)
+                    getHTML('preguntas/avanzado_d.html')
+                    // $('#respuesta').html(`
+                    //     <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-success">`+ data.Mensaje + `</div>
+                    // `)
+
+                } else {
+                    $('#submit').prop('disabled', false)
+                    $('#respuesta').html(`
+                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
+                    `)
+                }
+            },
+            error: function () {
+                $('#submit').prop('disabled', false)
+                $('#respuesta').html(`<div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">Error</div>`)
+            }
+        });
+    });
+</script>

@@ -1,0 +1,82 @@
+<form action="?p=procesar.php" method="post" id="principiante_e">
+    <div class="flex-column align-items-center justify-content-center w-100">
+        <div class="animate__animated animate__fadeIn animate__delay-1s">
+            <div class="card shadow-sm border-0 bg-danger text-white">
+                <div class="p-4">
+                    <p class="card-text fz12" id="pregunta">¿El razonamiento de este recorte periodístico es fuerte o débil?</p>
+                </div>
+            </div>
+            <div class="card mt-2 border-0 qtn_ea"></div>
+        </div>
+        <div class="progress invisible mt-4">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100"
+                aria-valuemin="0" aria-valuemax="100">100%</div>
+        </div>
+        <div class="d-flex justify-content-end pt-4">
+            <div class="me-4" id="respuesta"></div>
+            <button
+                class="animate__animated animate__fadeInRight btn btn-outline-danger h80 w200 shadow border border-4 border-danger fz13"
+                id="submit">FINALIZAR</button>
+        </div>
+    </div>
+</form>
+<script>
+    $('.container').addClass('p-3')
+    function cardQtns(id, qtn) {
+        return `<div class="card-body shadow-sm pointer">
+        <p class="card-text text-secondary fw400 fst-italic">` + qtn + `</p>
+        <div class="form-check">
+            <input class="form-check-input pointer" type="radio" name="` + id + `" id="` + id + `f" value="1">
+            <label class="form-check-label pointer ms-2 fz10" style="margin-top:3px" for="` + id + `f">
+            Fuerte
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input pointer" type="radio" name="` + id + `" id="` + id + `d" value="2">
+            <label class="form-check-label pointer ms-2 fz10" style="margin-top:3px" for="` + id + `d">
+            Débil
+            </label>
+        </div>
+    </div>`
+    }
+    let qtn_ea = `Es impresionante como Juan Dátiles llevó adelante su emprendimiento en contra del consejo de todos sus asesores, analistas y personas de confianza: todos le habían dicho que fracasaría.<br>
+    A pesar de estos consejos, Juan persistió en su aventura y hoy, la empresa “Dátiles y Cía.” es la que más crecimiento ha tenido en Latinoamérica durante este año.<br>
+    Increíblemente, esto nos demuestra que debemos creer en los sueños propios, tenernos confianza y escuchar nuestra ´voz interior´. No debemos dejarnos influenciar por las opiniones de los expertos antes de llevar a cabo un emprendimiento.`
+    $('.qtn_ea').html(cardQtns('qtn_ea', qtn_ea))
+
+    setTimeout(() => {
+        $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')
+    }, 700);
+
+    $("#principiante_e").bind("submit", function (e) {
+        e.preventDefault()
+        $.ajax({
+            type: $(this).attr("method"),
+            url: $(this).attr("action") + '&v=' + $.now(),
+            data: $(this).serialize() + '&question=principiante_e',
+            dataType: "json",
+            beforeSend: function (data) {
+                $('#submit').prop('disabled', true)
+            },
+            success: function (data) {
+                if (data.status == "ok") {
+                    $('#submit').prop('disabled', false)
+                    getHTML('fin.html')
+                    // $('#respuesta').html(`
+                    //     <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-success">`+ data.Mensaje + `</div>
+                    // `)
+
+                } else {
+                    $('#submit').prop('disabled', false)
+                    $('#respuesta').html(`
+                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
+                    `)
+                }
+            },
+            error: function () {
+                $('#submit').prop('disabled', false)
+                $('#respuesta').html(`<div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">Error</div>`)
+            }
+        });
+    });
+</script>

@@ -1,0 +1,82 @@
+<form action="?p=procesar.php" method="post" id="avanzado_b">
+    <div class="flex-column align-items-center justify-content-center w-100">
+        <div class="animate__animated animate__fadeIn animate__delay-1s">
+            <div class="card shadow-sm border-0 bg-danger text-white">
+                <div class="p-4">
+                    <p class="card-text fz12" id="pregunta">¿Quién tiene más chances de contraer la enfermedad A: ¿quiénes tienen síntomas X, o quienes no poseen ningún síntoma X?</p>
+                </div>
+                <img src="img/avanzado_b.jpg" class="card-img-bottom" alt="avanzado_b">
+            </div>
+            <div class="card mt-2 border-0 qtn_ba"></div>
+            <div class="card mt-2 border-0 qtn_bb"></div>
+            <div class="card mt-2 border-0 qtn_bc"></div>
+        </div>
+        <div class="progress invisible mt-4">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50"
+                aria-valuemin="0" aria-valuemax="100">50%</div>
+        </div>
+        <div class="d-flex justify-content-end pt-4">
+            <div class="me-4" id="respuesta"></div>
+            <button
+                class="animate__animated animate__fadeInRight btn btn-outline-danger h80 w200 shadow border border-4 border-danger fz13"
+                id="submit">SIGUIENTE</button>
+        </div>
+    </div>
+</form>
+<script>
+    $('.container').addClass('p-3')
+    function cardQtns(id, qtn, value) {
+        return `<div class="card-body shadow-sm pointer">
+        <div class="form-check">
+            <input class="form-check-input pointer" type="radio" id="`+ id + `" name="qtn" value="`+value+`">
+            <label class="form-check-label pointer ms-2" for="`+ id + `"><p class="card-text text-secondary fw400">` + qtn + `</p></label>
+        </div>
+    </div>`
+    }
+    let value_ba = '1'
+    let qtn_ba = '<span class="items">a)</span> Quienes presentan el sintoma X.'
+    $('.qtn_ba').html(cardQtns('qtn_ba', qtn_ba, value_ba))
+    let value_bb = '2'
+    let qtn_bb = '<span class="items">b)</span> Quienes no presentan el sintoma X'
+    $('.qtn_bb').html(cardQtns('qtn_bb', qtn_bb, value_bb))
+    let value_bc = '3'
+    let qtn_bc = '<span class="items">c)</span> Ambos pacientes tienen iguales chances de contraer la enfermedad A.'
+    $('.qtn_bc').html(cardQtns('qtn_bc', qtn_bc, value_bc))
+  
+
+    setTimeout(() => {
+        $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')
+    }, 700);
+
+    $("#avanzado_b").bind("submit", function (e) {
+        e.preventDefault()
+        $.ajax({
+            type: $(this).attr("method"),
+            url: $(this).attr("action") + '&v=' + $.now(),
+            data: $(this).serialize() + '&question=avanzado_b',
+            dataType: "json",
+            beforeSend: function (data) {
+                $('#submit').prop('disabled', true)
+            },
+            success: function (data) {
+                if (data.status == "ok") {
+                    $('#submit').prop('disabled', false)
+                    getHTML('preguntas/avanzado_c.html')
+                    // $('#respuesta').html(`
+                    //     <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-success">`+data.Mensaje+`</div>
+                    // `)
+
+                } else {
+                    $('#submit').prop('disabled', false)
+                    $('#respuesta').html(`
+                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
+                    `)
+                }
+            },
+            error: function () {
+                $('#submit').prop('disabled', false)
+                $('#respuesta').html(`<div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">Error</div>`)
+            }
+        });
+    });
+</script>

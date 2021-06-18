@@ -1,0 +1,22 @@
+<div
+    class="animate__animated animate__fadeIn w-100 vh-100 d-inline-block d-flex flex-column align-items-center justify-content-center">
+    <button
+        class="animate__animated animate__fadeInLeft btn btn-outline-danger h80 w200 shadow-lg border border-4 border-danger fz13"
+        id="principiante">PRINCIPIANTE</button>
+    <button
+        class="mt-4 animate__animated animate__fadeInRight btn btn-outline-danger h80 w200 shadow-lg border border-4 border-danger fz13"
+        id="avanzado">AVANZADO</button>
+</div>
+<script>
+    $('.container').removeClass('p-3')
+    $("#principiante").click(function (e) {
+        e.preventDefault()
+        getHTML('preguntas/principiante_a.html')
+        e.stopPropagation()
+    });
+    $("#avanzado").click(function (e) {
+        e.preventDefault()
+        getHTML('preguntas/avanzado_a.html')
+        e.stopPropagation()
+    });
+</script>

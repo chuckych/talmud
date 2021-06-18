@@ -1,0 +1,83 @@
+<form action="?p=procesar.php" method="post" id="avanzado_a">
+    <div class="flex-column align-items-center justify-content-center w-100">
+        <div class="animate__animated animate__fadeIn animate__delay-1s">
+            <div class="card shadow-sm border-0 bg-danger text-white">
+                <div class="p-4">
+                    <p class="card-text fz12" id="pregunta">¿Cuál de las siguientes opciones refleja mejor lo que este
+                        gráfico dice?</p>
+                </div>
+                <img src="img/avanzado_a.jpg" class="card-img-bottom" alt="avanzado_a">
+            </div>
+            <div class="card mt-2 border-0 qtn_a"></div>
+            <div class="card mt-2 border-0 qtn_b"></div>
+            <div class="card mt-2 border-0 qtn_c"></div>
+            <div class="card mt-2 border-0 qtn_d"></div>
+        </div>
+        <div class="progress invisible mt-4">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25"
+                aria-valuemin="0" aria-valuemax="100">25%</div>
+        </div>
+        <div class="d-flex justify-content-end pt-4">
+            <div class="me-4" id="respuesta"></div>
+            <button
+                class="animate__animated animate__fadeInRight btn btn-outline-danger h80 w200 shadow border border-4 border-danger fz13"
+                id="submit">SIGUIENTE</button>
+        </div>
+    </div>
+</form>
+<script>
+    $('.container').addClass('p-3')
+    function cardQtns(id, qtn) {
+        return `<div class="card-body shadow-sm pointer">
+        <div class="form-check form-checkbox">
+            <input class="form-check-input pointer" type="checkbox" id="`+ id + `" name="` + id + `">
+            <label class="form-check-label pointer ms-2" for="`+ id + `"><p class="card-text text-secondary fw400">` + qtn + `</p></label>
+        </div>
+    </div>`
+    }
+    let qtn_a = '<span class="items">a)</span> Sólo una persona cocina como mi compañero de banco, ocho como una persona promedio y sólo una como mi abuela.'
+    $('.qtn_a').html(cardQtns('qtn_a', qtn_a))
+    let qtn_b = '<span class="items">b)</span> La curva mide cuánta habilidad tiene cada persona, y por eso los que están en la categoría “persona promedio” son los más hábiles son para cocinar.'
+    $('.qtn_b').html(cardQtns('qtn_b', qtn_b))
+    let qtn_c = '<span class="items">c)</span> La curva refleja la representación de la habilidad para cocinar en todas las personas. Y marca que son pocos los que están en los extremos de cocinar muy mal y cocinar demasiado bien; y las personas promedio (la mayor cantidad) cocinan con nivel intermedio y son la media'
+    $('.qtn_c').html(cardQtns('qtn_c', qtn_c))
+    let qtn_d = '<span class="items">d)</span> Las abuelas y los compañeros de banco (o amigos) representan un grupo más chico que las personas promedio, por eso están en los extremos y son menos que el grupo central.'
+    $('.qtn_d').html(cardQtns('qtn_d', qtn_d))
+  
+
+    setTimeout(() => {
+        $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')
+    }, 700);
+
+    $("#avanzado_a").bind("submit", function (e) {
+        e.preventDefault()
+        $.ajax({
+            type: $(this).attr("method"),
+            url: $(this).attr("action") + '&v=' + $.now(),
+            data: $(this).serialize() + '&question=avanzado_a',
+            dataType: "json",
+            beforeSend: function (data) {
+                $('#submit').prop('disabled', true)
+            },
+            success: function (data) {
+                if (data.status == "ok") {
+                    $('#submit').prop('disabled', false)
+                    getHTML('preguntas/avanzado_b.html')
+                    // $('#respuesta').html(`
+                    //     <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-success">`+data.Mensaje+`</div>
+                    // `)
+
+                } else {
+                    $('#submit').prop('disabled', false)
+                    $('#respuesta').html(`
+                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
+                    `)
+                }
+            },
+            error: function () {
+                $('#submit').prop('disabled', false)
+                $('#respuesta').html(`<div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">Error</div>`)
+            }
+        });
+    });
+</script>
