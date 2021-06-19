@@ -16,13 +16,14 @@
             <div class="me-4" id="respuesta"></div>
             <button
                 class="animate__animated animate__fadeInRight btn btn-outline-danger h80 w200 shadow border border-4 border-danger fz13"
-                id="submit">FINALIZAR</button>
+                id="submit"></button>
         </div>
     </div>
 </form>
 <script>
     $('.container').addClass('p-3')
-    function cardQtns(id, qtn) {
+
+    function cardQtnsradio(id, qtn) {
         return `<div class="card-body shadow-sm pointer">
         <p class="card-text text-secondary fw400 fst-italic">` + qtn + `</p>
         <div class="form-check">
@@ -42,12 +43,13 @@
 
     $.get('preguntas/preguntas.json')
         .done(function (data) {
+            $('#submit').html(data.btnFin)
             let item = data.preguntas.principiante_e
             let a_preg = (item.pregunta)
             $('#pregunta').html(a_preg)
 
             let qtn_ea = item.a
-            $('.qtn_ea').html(cardQtns('qtn_ea', qtn_ea))
+            $('.qtn_ea').html(cardQtnsradio('qtn_ea', qtn_ea))
 
         });
 
@@ -71,8 +73,8 @@
                     getHTML('fin.html')
                 } else {
                     $('#submit').prop('disabled', false)
-                    $('#respuesta').html(`
-                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
+                     $('#respuesta').html(`
+                        <div class="p-2 mt-4 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ $('#errorMsg').val() + `</div>
                     `)
                 }
             },

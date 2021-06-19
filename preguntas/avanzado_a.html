@@ -26,15 +26,6 @@
 </form>
 <script>
     $('.container').addClass('p-3')
-    function cardQtns(id, qtn) {
-        return `<div class="card-body shadow-sm pointer">
-        <div class="form-check form-checkbox">
-            <input class="form-check-input pointer" type="checkbox" id="`+ id + `" name="` + id + `">
-            <label class="form-check-label pointer ms-2" for="`+ id + `"><p class="card-text text-secondary fw400">` + qtn + `</p></label>
-        </div>
-    </div>`
-    }
-
     $.get('preguntas/preguntas.json')
         .done(function (data) {
             let item = data.preguntas.avanzados_a
@@ -76,7 +67,7 @@
                 } else {
                     $('#submit').prop('disabled', false)
                     $('#respuesta').html(`
-                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
+                        <div class="p-2 mt-4 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ $('#errorMsg').val() + `</div>
                     `)
                 }
             },

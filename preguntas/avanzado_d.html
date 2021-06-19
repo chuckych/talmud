@@ -24,7 +24,7 @@
 </form>
 <script>
     $('.container').addClass('p-3')
-    function cardQtns(id, qtn, value) {
+    function cardQtnsradio(id, qtn, value) {
         return `<div class="card-body shadow-sm pointer">
         <div class="form-check">
             <input class="form-check-input pointer" type="radio" id="`+ id + `" name="qtn" value="`+value+`">
@@ -42,15 +42,15 @@
 
             let value_da = '1'
             let qtn_da = '<span class="items">a)</span> ' + item.a
-            $('.qtn_da').html(cardQtns('qtn_da', qtn_da, value_da))
+            $('.qtn_da').html(cardQtnsradio('qtn_da', qtn_da, value_da))
 
             let value_db = '2'
             let qtn_db = '<span class="items">b)</span> ' + item.b
-            $('.qtn_db').html(cardQtns('qtn_db', qtn_db, value_db))
+            $('.qtn_db').html(cardQtnsradio('qtn_db', qtn_db, value_db))
 
             let value_dc = '3'
             let qtn_dc = '<span class="items">c)</span> ' + item.c
-            $('.qtn_dc').html(cardQtns('qtn_dc', qtn_dc, value_dc))
+            $('.qtn_dc').html(cardQtnsradio('qtn_dc', qtn_dc, value_dc))
 
         });
 
@@ -72,14 +72,10 @@
                 if (data.status == "ok") {
                     $('#submit').prop('disabled', false)
                     getHTML('fin.html')
-                    // $('#respuesta').html(`
-                    //     <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-success">`+data.Mensaje+`</div>
-                    // `)
-
                 } else {
                     $('#submit').prop('disabled', false)
                     $('#respuesta').html(`
-                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
+                        <div class="p-2 mt-4 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ $('#errorMsg').val() + `</div>
                     `)
                 }
             },

@@ -2,10 +2,10 @@
     class="animate__animated animate__fadeIn w-100 vh-100 d-inline-block d-flex flex-column align-items-center justify-content-center">
     <button
         class="animate__animated animate__fadeInLeft btn btn-outline-danger h80 w200 shadow-lg border border-4 border-danger fz13"
-        id="principiante">PRINCIPIANTE</button>
+        id="principiante"></button>
     <button
         class="mt-4 animate__animated animate__fadeInRight btn btn-outline-danger h80 w200 shadow-lg border border-4 border-danger fz13"
-        id="avanzado">AVANZADO</button>
+        id="avanzado"></button>
 </div>
 <script>
     $('.container').removeClass('p-3')
@@ -19,4 +19,9 @@
         getHTML('preguntas/avanzado_a.html')
         e.stopPropagation()
     });
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            $('#principiante').html(data.btnPrincipiante)
+            $('#avanzado').html(data.btnAvanzado)
+        });
 </script>

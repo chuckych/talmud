@@ -14,7 +14,7 @@ function vjs()
     if ($_SERVER['SERVER_NAME'] == 'localhost') {
         return time();
     } else {
-        return 'v0.0.2';
+        return 'v0.0.3';
     }
 }
 function pagina($pagina)

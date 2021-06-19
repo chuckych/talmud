@@ -1,5 +1,12 @@
 {
     "proyecto": "Questionario Talmud",
+    "btnPrincipiante": "PRINCIPIANTE",
+    "btnAvanzado": "AVANZADO",
+    "btnAvance": "SIGUIENTE",
+    "btnFin": "FINALIZAR",
+    "btnDescarga": "DESCARGAR",
+    "btnLinkSrc": ".",
+    "errorMsg": "¡Intente de nuevo!",
     "preguntas": {
         "principiante_a": {
             "pregunta": "¿Cuáles de las siguientes situaciones de la vida cotidiana requiere que tengas habilidades de pensamiento crítico para resolverlas exitosamente?",

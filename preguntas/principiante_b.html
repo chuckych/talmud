@@ -25,23 +25,15 @@
             <div class="me-4" id="respuesta"></div>
             <button
                 class="animate__animated animate__fadeInRight btn btn-outline-danger h80 w200 shadow border border-4 border-danger fz13"
-                id="submit">SIGUIENTE</button>
+                id="submit"></button>
         </div>
     </div>
 </form>
 <script>
-    $('.container').addClass('p-3')
-    function cardQtns(id, qtn) {
-        return `<div class="card-body shadow-sm pointer">
-        <div class="form-check form-checkbox">
-            <input class="form-check-input pointer" type="checkbox" id="`+ id + `" name="` + id + `">
-            <label class="form-check-label pointer ms-2" for="`+ id + `"><p class="card-text text-secondary fw400">` + qtn + `</p></label>
-        </div>
-    </div>`
-    }
-    
+    $('.container').addClass('p-3')    
     $.get('preguntas/preguntas.json')
         .done(function (data) {
+            $('#submit').html(data.btnAvance)
             let item = data.preguntas.principiante_b
             let a_preg = (item.pregunta)
             $('#pregunta').html(a_preg)
@@ -99,7 +91,7 @@
                 } else {
                     $('#submit').prop('disabled', false)
                     $('#respuesta').html(`
-                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
+                        <div class="p-2 mt-4 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ $('#errorMsg').val() + `</div>
                     `)
                 }
             },

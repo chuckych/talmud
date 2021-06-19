@@ -89,6 +89,10 @@ if (($_POST['question'] == 'principiante_a')) {
         $data = array('status' => 'ok', 'Mensaje' => 'Muy Bien');
         echo json_encode($data);
         exit;
+    }else{
+        $data = array('status' => 'Error', 'Mensaje' => 'Error');
+        echo json_encode($data);
+        exit;
     }
 } else if (($_POST['question'] == 'principiante_c')) {
 

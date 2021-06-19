@@ -2,11 +2,16 @@
     class="animate__animated animate__tada w-100 vh-100 d-inline-block d-flex flex-column align-items-center justify-content-center">
     <p class="card-text h3 fw700 text-center">EXCELENTE!</p>
     <p class="card-text h5 fw700 text-center">YA PODES DESCARGAR EL LIBRO!!</p>
-    <button
-        class="animate__animated animate__fadeInLeft btn btn-success h100 w200 shadow-lg border border-4 border-success fz13 mt-5"
-        id="principiante">DESCARGAR
-    </button>
+    <a href=""
+        class="animate__animated animate__fadeInLeft btn btn-success py-4 w200 shadow-lg border border-4 border-success fz13 mt-5"
+        id="descargar">DESCARGAR
+    </a>
 </div>
 <script>
     $('.container').removeClass('p-3')
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            $('#descargar').html(data.btnDescarga)
+            $('#descargar').attr('href', data.btnLinkSrc)
+        });
 </script>

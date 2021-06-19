@@ -25,7 +25,7 @@
 </form>
 <script>
     $('.container').addClass('p-3')
-    function cardQtns(id, qtn, value) {
+    function cardQtnsradio(id, qtn, value) {
         return `<div class="card-body shadow-sm pointer">
         <div class="form-check">
             <input class="form-check-input pointer" type="radio" id="`+ id + `" name="qtn" value="` + value + `">
@@ -44,15 +44,15 @@
 
             let value_ba = '1'
             let qtn_ba = '<span class="items">a)</span> ' + item.a
-            $('.qtn_ba').html(cardQtns('qtn_ba', qtn_ba, value_ba))
+            $('.qtn_ba').html(cardQtnsradio('qtn_ba', qtn_ba, value_ba))
 
             let value_bb = '2'
             let qtn_bb = '<span class="items">b)</span> ' + item.b
-            $('.qtn_bb').html(cardQtns('qtn_bb', qtn_bb, value_bb))
+            $('.qtn_bb').html(cardQtnsradio('qtn_bb', qtn_bb, value_bb))
 
             let value_bc = '3'
             let qtn_bc = '<span class="items">c)</span> ' + item.c
-            $('.qtn_bc').html(cardQtns('qtn_bc', qtn_bc, value_bc))
+            $('.qtn_bc').html(cardQtnsradio('qtn_bc', qtn_bc, value_bc))
 
         });
 
@@ -77,7 +77,7 @@
                 } else {
                     $('#submit').prop('disabled', false)
                     $('#respuesta').html(`
-                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
+                        <div class="p-2 mt-4 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ $('#errorMsg').val() + `</div>
                     `)
                 }
             },
