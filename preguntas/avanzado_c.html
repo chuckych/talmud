@@ -3,19 +3,12 @@
         <div class="animate__animated animate__fadeIn animate__delay-1s">
             <div class="card shadow-sm border-0 bg-danger text-white">
                 <div class="p-4">
-                    <p class="card-text fz12" id="pregunta">¿Cuál de las conclusiones puede ser inferida con cierta
-                        seguridad, a partir del siguiente recorte periodístico?</p>
+                    <p class="card-text fz12" id="pregunta"></p>
                 </div>
             </div>
             <div class="card mt-2 border-0">
                 <div class="p-4">
-                    <p class="card-text text-secondary fw400 fst-italic">Los médicos que investigan el brote de una
-                        intoxicación por comida en mal estado han descubierto que cuatro de las personas que han
-                        presentado síntomas de intoxicación habían comido en el restaurant “El Tío Bueno” el día
-                        anterior, y todas ellas habían ordenado pescado.<br>Cualquier establecimiento que esté
-                        relacionado con problemas de intoxicación en la comida ofrecida será clausurado por las
-                        autoridades sanitarias hasta que sea inspeccionado y dado de alta para funcionar. Hoy el
-                        restaurant “El Tío Bueno” permanecerá cerrado.</p>
+                    <p id="texto" class="card-text text-secondary fw400 fst-italic"></p>
                 </div>
             </div>
             <div class="card mt-2 border-0 qtn_ca"></div>
@@ -45,21 +38,47 @@
         </div>
     </div>`
     }
-    let value_ca = '1'
-    let qtn_ca = '<span class="items">a)</span> La fuente de la ola de intoxicaciones es el restaurant “El Tío Bueno”.'
-    $('.qtn_ca').html(cardQtns('qtn_ca', qtn_ca, value_ca))
 
-    let value_cb = '2'
-    let qtn_cb = '<span class="items">b)</span> El pescado fue la fuente de la ola de intoxicaciones'
-    $('.qtn_cb').html(cardQtns('qtn_cb', qtn_cb, value_cb))
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            let item = data.preguntas.avanzados_c
 
-    let value_cc = '3'
-    let qtn_cc = '<span class="items">c)</span> El restaurante “El Tío Bueno” fue clausurado por los inspectores.'
-    $('.qtn_cc').html(cardQtns('qtn_cc', qtn_cc, value_cc))
+            let a_preg = (item.pregunta)
+            $('#pregunta').html(a_preg)
+            $('#texto').html(item.texto)
 
-    let value_cd = '4'
-    let qtn_cd = 'Ninguna de las conclusiones puede ser inferida del recorte periodístico de manera confiable o segura.'
-    $('.qtn_cd').html(cardQtns('qtn_cd', qtn_cd, value_cd))
+            let value_ca = '1'
+            let qtn_ca = '<span class="items">a)</span> ' + item.a
+            $('.qtn_ca').html(cardQtns('qtn_ca', qtn_ca, value_ca))
+
+            let value_cb = '2'
+            let qtn_cb = '<span class="items">b)</span> ' + item.b
+            $('.qtn_cb').html(cardQtns('qtn_cb', qtn_cb, value_cb))
+
+            let value_cc = '3'
+            let qtn_cc = '<span class="items">c)</span> ' + item.c
+            $('.qtn_cc').html(cardQtns('qtn_cc', qtn_cc, value_cc))
+
+            let value_cd = 'a'
+            let qtn_cd = '<span class="items">d)</span> ' + item.d
+            $('.qtn_cd').html(cardQtns('qtn_cd', qtn_cd, value_cd))
+
+        });
+    // let value_ca = '1'
+    // let qtn_ca = '<span class="items">a)</span> La fuente de la ola de intoxicaciones es el restaurant “El Tío Bueno”.'
+    // $('.qtn_ca').html(cardQtns('qtn_ca', qtn_ca, value_ca))
+
+    // let value_cb = '2'
+    // let qtn_cb = '<span class="items">b)</span> El pescado fue la fuente de la ola de intoxicaciones'
+    // $('.qtn_cb').html(cardQtns('qtn_cb', qtn_cb, value_cb))
+
+    // let value_cc = '3'
+    // let qtn_cc = '<span class="items">c)</span> El restaurante “El Tío Bueno” fue clausurado por los inspectores.'
+    // $('.qtn_cc').html(cardQtns('qtn_cc', qtn_cc, value_cc))
+
+    // let value_cd = '4'
+    // let qtn_cd = 'Ninguna de las conclusiones puede ser inferida del recorte periodístico de manera confiable o segura.'
+    // $('.qtn_cd').html(cardQtns('qtn_cd', qtn_cd, value_cd))
 
     setTimeout(() => {
         $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')

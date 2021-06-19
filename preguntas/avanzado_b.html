@@ -3,7 +3,7 @@
         <div class="animate__animated animate__fadeIn animate__delay-1s">
             <div class="card shadow-sm border-0 bg-danger text-white">
                 <div class="p-4">
-                    <p class="card-text fz12" id="pregunta">¿Quién tiene más chances de contraer la enfermedad A: ¿quiénes tienen síntomas X, o quienes no poseen ningún síntoma X?</p>
+                    <p class="card-text fz12" id="pregunta"></p>
                 </div>
                 <img src="img/avanzado_b.jpg" class="card-img-bottom" alt="avanzado_b">
             </div>
@@ -28,21 +28,44 @@
     function cardQtns(id, qtn, value) {
         return `<div class="card-body shadow-sm pointer">
         <div class="form-check">
-            <input class="form-check-input pointer" type="radio" id="`+ id + `" name="qtn" value="`+value+`">
+            <input class="form-check-input pointer" type="radio" id="`+ id + `" name="qtn" value="` + value + `">
             <label class="form-check-label pointer ms-2" for="`+ id + `"><p class="card-text text-secondary fw400">` + qtn + `</p></label>
         </div>
     </div>`
     }
-    let value_ba = '1'
-    let qtn_ba = '<span class="items">a)</span> Quienes presentan el sintoma X.'
-    $('.qtn_ba').html(cardQtns('qtn_ba', qtn_ba, value_ba))
-    let value_bb = '2'
-    let qtn_bb = '<span class="items">b)</span> Quienes no presentan el sintoma X'
-    $('.qtn_bb').html(cardQtns('qtn_bb', qtn_bb, value_bb))
-    let value_bc = '3'
-    let qtn_bc = '<span class="items">c)</span> Ambos pacientes tienen iguales chances de contraer la enfermedad A.'
-    $('.qtn_bc').html(cardQtns('qtn_bc', qtn_bc, value_bc))
-  
+
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            let item = data.preguntas.avanzados_b
+            console.log(data);
+
+            let a_preg = (item.pregunta)
+            $('#pregunta').html(a_preg)
+
+            let value_ba = '1'
+            let qtn_ba = '<span class="items">a)</span> ' + item.a
+            $('.qtn_ba').html(cardQtns('qtn_ba', qtn_ba, value_ba))
+
+            let value_bb = '2'
+            let qtn_bb = '<span class="items">b)</span> ' + item.b
+            $('.qtn_bb').html(cardQtns('qtn_bb', qtn_bb, value_bb))
+
+            let value_bc = '3'
+            let qtn_bc = '<span class="items">c)</span> ' + item.c
+            $('.qtn_bc').html(cardQtns('qtn_bc', qtn_bc, value_bc))
+
+        });
+
+    // let value_ba = '1'
+    // let qtn_ba = '<span class="items">a)</span> Quienes presentan el sintoma X.'
+    // $('.qtn_ba').html(cardQtns('qtn_ba', qtn_ba, value_ba))
+    // let value_bb = '2'
+    // let qtn_bb = '<span class="items">b)</span> Quienes no presentan el sintoma X'
+    // $('.qtn_bb').html(cardQtns('qtn_bb', qtn_bb, value_bb))
+    // let value_bc = '3'
+    // let qtn_bc = '<span class="items">c)</span> Ambos pacientes tienen iguales chances de contraer la enfermedad A.'
+    // $('.qtn_bc').html(cardQtns('qtn_bc', qtn_bc, value_bc))
+
 
     setTimeout(() => {
         $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')

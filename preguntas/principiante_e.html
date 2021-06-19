@@ -3,7 +3,7 @@
         <div class="animate__animated animate__fadeIn animate__delay-1s">
             <div class="card shadow-sm border-0 bg-danger text-white">
                 <div class="p-4">
-                    <p class="card-text fz12" id="pregunta">¿El razonamiento de este recorte periodístico es fuerte o débil?</p>
+                    <p class="card-text fz12" id="pregunta"></p>
                 </div>
             </div>
             <div class="card mt-2 border-0 qtn_ea"></div>
@@ -39,10 +39,17 @@
         </div>
     </div>`
     }
-    let qtn_ea = `Es impresionante como Juan Dátiles llevó adelante su emprendimiento en contra del consejo de todos sus asesores, analistas y personas de confianza: todos le habían dicho que fracasaría.<br>
-    A pesar de estos consejos, Juan persistió en su aventura y hoy, la empresa “Dátiles y Cía.” es la que más crecimiento ha tenido en Latinoamérica durante este año.<br>
-    Increíblemente, esto nos demuestra que debemos creer en los sueños propios, tenernos confianza y escuchar nuestra ´voz interior´. No debemos dejarnos influenciar por las opiniones de los expertos antes de llevar a cabo un emprendimiento.`
-    $('.qtn_ea').html(cardQtns('qtn_ea', qtn_ea))
+
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            let item = data.preguntas.principiante_e
+            let a_preg = (item.pregunta)
+            $('#pregunta').html(a_preg)
+
+            let qtn_ea = item.a
+            $('.qtn_ea').html(cardQtns('qtn_ea', qtn_ea))
+
+        });
 
     setTimeout(() => {
         $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')

@@ -3,7 +3,7 @@
         <div class="animate__animated animate__fadeIn animate__delay-1s">
             <div class="card shadow-sm border-0 bg-danger text-white">
                 <div class="p-4">
-                    <p class="card-text fz12" id="pregunta">¿Cuál de los hechos afirmados podríamos verificar por nuestros propios medios investigando un poco?</p>
+                    <p class="card-text fz12" id="pregunta"></p>
                 </div>
             </div>
             <div class="card mt-2 border-0 qtn_da"></div>
@@ -31,11 +31,19 @@
         </div>
     </div>`
     }
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            let item = data.preguntas.principiante_d
+            let a_preg = (item.pregunta)
+            $('#pregunta').html(a_preg)
 
-    let qtn_da = '<span class="items">a)</span> Angola es limítrofe con Namibia.'
-    $('.qtn_da').html(cardQtns('qtn_da', qtn_da))
-    let qtn_db = '<span class="items">b)</span> Los dinosaurios tenían sangre fría.'
-    $('.qtn_db').html(cardQtns('qtn_db', qtn_db))
+            let qtn_da = '<span class="items">a)</span> ' + item.a
+            $('.qtn_da').html(cardQtns('qtn_da', qtn_da))
+
+            let qtn_db = '<span class="items">b)</span> ' + item.b
+            $('.qtn_db').html(cardQtns('qtn_db', qtn_db))
+
+        });
 
     setTimeout(() => {
         $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')

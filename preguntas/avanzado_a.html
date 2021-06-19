@@ -3,8 +3,7 @@
         <div class="animate__animated animate__fadeIn animate__delay-1s">
             <div class="card shadow-sm border-0 bg-danger text-white">
                 <div class="p-4">
-                    <p class="card-text fz12" id="pregunta">¿Cuál de las siguientes opciones refleja mejor lo que este
-                        gráfico dice?</p>
+                    <p class="card-text fz12" id="pregunta"></p>
                 </div>
                 <img src="img/avanzado_a.jpg" class="card-img-bottom" alt="avanzado_a">
             </div>
@@ -35,15 +34,26 @@
         </div>
     </div>`
     }
-    let qtn_a = '<span class="items">a)</span> Sólo una persona cocina como mi compañero de banco, ocho como una persona promedio y sólo una como mi abuela.'
-    $('.qtn_a').html(cardQtns('qtn_a', qtn_a))
-    let qtn_b = '<span class="items">b)</span> La curva mide cuánta habilidad tiene cada persona, y por eso los que están en la categoría “persona promedio” son los más hábiles son para cocinar.'
-    $('.qtn_b').html(cardQtns('qtn_b', qtn_b))
-    let qtn_c = '<span class="items">c)</span> La curva refleja la representación de la habilidad para cocinar en todas las personas. Y marca que son pocos los que están en los extremos de cocinar muy mal y cocinar demasiado bien; y las personas promedio (la mayor cantidad) cocinan con nivel intermedio y son la media'
-    $('.qtn_c').html(cardQtns('qtn_c', qtn_c))
-    let qtn_d = '<span class="items">d)</span> Las abuelas y los compañeros de banco (o amigos) representan un grupo más chico que las personas promedio, por eso están en los extremos y son menos que el grupo central.'
-    $('.qtn_d').html(cardQtns('qtn_d', qtn_d))
-  
+
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            let item = data.preguntas.avanzados_a
+            let a_preg = (item.pregunta)
+            $('#pregunta').html(a_preg)
+
+            let qtn_a = '<span class="items">a)</span> ' + item.a
+            $('.qtn_a').html(cardQtns('qtn_a', qtn_a))
+
+            let qtn_b = '<span class="items">b)</span> ' + item.b
+            $('.qtn_b').html(cardQtns('qtn_b', qtn_b))
+
+            let qtn_c = '<span class="items">c)</span> ' + item.c
+            $('.qtn_c').html(cardQtns('qtn_c', qtn_c))
+
+            let qtn_d = '<span class="items">d)</span> ' + item.d
+            $('.qtn_d').html(cardQtns('qtn_d', qtn_d))
+
+        });  
 
     setTimeout(() => {
         $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')

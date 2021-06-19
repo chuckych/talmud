@@ -3,7 +3,7 @@
         <div class="animate__animated animate__fadeIn animate__delay-1s">
             <div class="card shadow-sm border-0 bg-danger text-white">
                 <div class="p-4">
-                    <p class="card-text fz12" id="pregunta">¿Cuál de las siguientes afirmaciones son hechos y cuáles opiniones?</p>
+                    <p class="card-text fz12" id="pregunta"></p>
                 </div>
             </div>
             <div class="card mt-2 border-0 qtn_ca"></div>
@@ -41,13 +41,24 @@
         </div>
     </div>`
     }
-    let qtn_ca = 'Angola es limítrofe con Namibia.'
-    $('.qtn_ca').html(cardQtns('qtn_ca', qtn_ca))
-    let qtn_cb = 'Los dinosaurios tenían sangre fría.'
-    $('.qtn_cb').html(cardQtns('qtn_cb', qtn_cb))
-    let qtn_cc = 'Los jugadores de beisbol ganan demasiado dinero.'
-    $('.qtn_cc').html(cardQtns('qtn_cc', qtn_cc))
 
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            let item = data.preguntas.principiante_c
+            let a_preg = (item.pregunta)
+            $('#pregunta').html(a_preg)
+
+            let qtn_ca = '<span class="items">a)</span> ' + item.a
+            $('.qtn_ca').html(cardQtns('qtn_ca', qtn_ca))
+
+            let qtn_cb = '<span class="items">b)</span> ' + item.b
+            $('.qtn_cb').html(cardQtns('qtn_cb', qtn_cb))
+
+            let qtn_cc = '<span class="items">c)</span> ' + item.c
+            $('.qtn_cc').html(cardQtns('qtn_cc', qtn_cc))
+
+        });
+        
     setTimeout(() => {
         $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')
     }, 700);

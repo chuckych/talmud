@@ -1,0 +1,67 @@
+{
+    "proyecto": "Questionario Talmud",
+    "preguntas": {
+        "principiante_a": {
+            "pregunta": "¿Cuáles de las siguientes situaciones de la vida cotidiana requiere que tengas habilidades de pensamiento crítico para resolverlas exitosamente?",
+            "a": "Un administrativo de un hospital debe decidir en qué orden los médicos atenderán a los pacientes que están en la sala de espera.",
+            "b": "Un plomero debe decidir cuáles serán los materiales más adecuados para la reparación que debe realizar.",
+            "c": "Un abogado debe evaluar las pruebas a favor de su cliente para decidir si le conviene “arreglar” o “ir a juicio” con su contraparte.",
+            "d": "El encargado de “atención al cliente” de una empresa debe evaluar los comentarios y críticas de los clientes para capacitar a los empleados que en el futuro los atenderán."
+        },
+        "principiante_b": {
+            "pregunta": "¿Cuál de las siguientes afirmaciones es un “Hecho”?",
+            "a": "Mi mamá es la mejor mamá del mundo.",
+            "b": "Mi papá es más alto que el tuyo.",
+            "c": "Mi número de teléfono es difícil de memorizar.",
+            "d": "La parte más profunda del océano está a 10.919 metros de profundidad.",
+            "e": "Los perros son mejores mascotas que las tortugas.",
+            "f": "Fumar es malo para tu salud.",
+            "g": "5% de todos los casos de cáncer de pulmón son causados por el cigarrillo.",
+            "h": "Jugar con muñequitos de guerra es divertido.",
+            "i": "Dos de cada diez argentinos son aburridos.",
+            "j": "Uno de cada cien argentinos es daltónico."
+        },
+        "principiante_c": {
+            "pregunta": "¿Cuál de las siguientes afirmaciones son hechos y cuáles opiniones?",
+            "a": "Angola es limítrofe con Namibia.",
+            "b": "Los dinosaurios tenían sangre fría.",
+            "c": "Los jugadores de beisbol ganan demasiado dinero."
+        },
+        "principiante_d": {
+            "pregunta": "¿Cuál de los hechos afirmados podríamos verificar por nuestros propios medios investigando un poco?",
+            "a": "Angola es limítrofe con Namibia.",
+            "b": "Los dinosaurios tenían sangre fría."
+        },
+        "principiante_e": {
+            "pregunta": "¿El razonamiento de este recorte periodístico es fuerte o débil?",
+            "a": "Es impresionante como Juan Dátiles llevó adelante su emprendimiento en contra del consejo de todos sus asesores, analistas y personas de confianza: todos le habían dicho que fracasaría.<br>A pesar de estos consejos, Juan persistió en su aventura y hoy, la empresa “Dátiles y Cía.” es la que más crecimiento ha tenido en Latinoamérica durante este año.<br>Increíblemente, esto nos demuestra que debemos creer en los sueños propios, tenernos confianza y escuchar nuestra ´voz interior´. No debemos dejarnos influenciar por las opiniones de los expertos antes de llevar a cabo un emprendimiento."
+        },
+        "avanzados_a": {
+            "pregunta": "¿Cuál de las siguientes opciones refleja mejor lo que este gráfico dice?",
+            "a": "Sólo una persona cocina como mi compañero de banco, ocho como una persona promedio y sólo una como mi abuela.",
+            "b": "La curva mide cuánta habilidad tiene cada persona, y por eso los que están en la categoría “persona promedio” son los más hábiles son para cocinar.",
+            "c": "La curva refleja la representación de la habilidad para cocinar en todas las personas. Y marca que son pocos los que están en los extremos de cocinar muy mal y cocinar demasiado bien; y las personas promedio (la mayor cantidad) cocinan con nivel intermedio y son la media.",
+            "d": "Las abuelas y los compañeros de banco (o amigos) representan un grupo más chico que las personas promedio, por eso están en los extremos y son menos que el grupo central."
+        },
+        "avanzados_b": {
+            "pregunta": "¿Quién tiene más chances de contraer la enfermedad A: ¿quiénes tienen síntomas X, o quienes no poseen ningún síntoma X?",
+            "a": "Quienes presentan el sintoma X",
+            "b": "Quienes no presentan el sintoma X",
+            "c": "Ambos pacientes tienen iguales chances de contraer la enfermedad A"
+        },
+        "avanzados_c": {
+            "pregunta": "¿Cuál de las conclusiones puede ser inferida con cierta seguridad, a partir del siguiente recorte periodístico?",
+            "a": "La fuente de la ola de intoxicaciones es el restaurant “El Tío Bueno”.",
+            "b": "El pescado fue la fuente de la ola de intoxicaciones.",
+            "c": "El restaurante “El Tío Bueno” fue clausurado por los inspectores.",
+            "d": "Ninguna de las conclusiones puede ser inferida del recorte periodístico de manera confiable o segura.",
+            "texto": "Los médicos que investigan el brote de una intoxicación por comida en mal estado han descubierto que cuatro de las personas que han presentado síntomas de intoxicación habían comido en el restaurant “El Tío Bueno” el día anterior, y todas ellas habían ordenado pescado.<br>Cualquier establecimiento que esté relacionado con problemas de intoxicación en la comida ofrecida será clausurado por las autoridades sanitarias hasta que sea inspeccionado y dado de alta para funcionar. Hoy el restaurant “El Tío Bueno” permanecerá cerrado."
+        },
+        "avanzados_d": {
+            "pregunta": "¿Sabías que hay más accidentes viales mortales que involucran autos deportivos que automóviles familiares?",
+            "a": "No debemos comprar automóviles deportivos porque tenemos más chances de morir en un accidente… y debemos viajar en autos familiares para estar seguros.",
+            "b": "Las variables “tipo de automóvil” y “cantidad de accidentes mortales” están un poco relacionadas (pero no mucho) y, por eso, no tengo muchas más probabilidades de morir conduciendo un auto deportivo que uno familiar.",
+            "c": "La estadística del enunciado es tramposa, porque no explicita un dato que puede generar la correlación sugerida: que los autos deportivos suelen ser conducidos por jóvenes que no temen al peligro, mientras que los autos familiares suelen ser conducidos por madres que son muy conservadoras al manejar."
+        }
+    }
+}

@@ -3,7 +3,7 @@
         <div class="animate__animated animate__fadeIn animate__delay-1s">
             <div class="card shadow-sm border-0 bg-danger text-white">
                 <div class="p-4">
-                    <p class="card-text fz12" id="pregunta">¿Cuáles de las siguientes situaciones de la vida cotidiana requiere que tengas habilidades de pensamiento crítico para resolverlas exitosamente?</p>
+                    <p class="card-text fz12" id="pregunta"></p>
                 </div>
             </div>
             <div class="card mt-2 border-0 qtn_a"></div>
@@ -29,18 +29,30 @@
         return `<div class="card-body shadow-sm pointer">
         <div class="form-check form-checkbox">
             <input class="form-check-input pointer" type="checkbox" id="`+ id + `" name="` + id + `">
-            <label class="form-check-label pointer ms-2" for="`+ id + `"><p class="card-text text-secondary fw400">` + qtn + `</p></label>
+            <label class="form-check-label pointer ms-2" for="` + id + `"><p class="card-text text-secondary fw400">` + qtn + `</p></label>
         </div>
     </div>`
     }
-    let qtn_a = '<span class="items">a)</span> Un administrativo de un hospital debe decidir en qué orden los médicos atenderán a los pacientes que están en la sala de espera.'
-    $('.qtn_a').html(cardQtns('qtn_a', qtn_a))
-    let qtn_b = '<span class="items">b)</span> Un plomero debe decidir cuáles serán los materiales más adecuados para la reparación que debe realizar.'
-    $('.qtn_b').html(cardQtns('qtn_b', qtn_b))
-    let qtn_d = '<span class="items">c)</span> El encargado de “atención al cliente” de una empresa debe evaluar los comentarios y críticas de los clientes para capacitar a los empleados que en el futuro los atenderán.'
-    $('.qtn_d').html(cardQtns('qtn_d', qtn_d))
-    let qtn_c = '<span class="items">d)</span> Un abogado debe evaluar las pruebas a favor de su cliente para decidir si le conviene “arreglar” o “ir a juicio” con su contraparte.'
-    $('.qtn_c').html(cardQtns('qtn_c', qtn_c))
+
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            let item = data.preguntas.principiante_a
+            let a_preg = (item.pregunta)
+            $('#pregunta').html(a_preg)
+
+            let qtn_a = '<span class="items">a)</span> ' + item.a
+            $('.qtn_a').html(cardQtns('qtn_a', qtn_a))
+
+            let qtn_b = '<span class="items">b)</span> ' + item.b
+            $('.qtn_b').html(cardQtns('qtn_b', qtn_b))
+
+            let qtn_c = '<span class="items">c)</span> ' + item.c
+            $('.qtn_c').html(cardQtns('qtn_c', qtn_c))
+
+            let qtn_d = '<span class="items">d)</span> ' + item.d
+            $('.qtn_d').html(cardQtns('qtn_d', qtn_d))
+
+        });
 
     setTimeout(() => {
         $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')
@@ -67,7 +79,7 @@
                 } else {
                     $('#submit').prop('disabled', false)
                     $('#respuesta').html(`
-                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+data.Mensaje+`</div>
+                        <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-danger">`+ data.Mensaje + `</div>
                     `)
                 }
             },

@@ -3,7 +3,7 @@
         <div class="animate__animated animate__fadeIn animate__delay-1s">
             <div class="card shadow-sm border-0 bg-danger text-white">
                 <div class="p-4">
-                    <p class="card-text fz12" id="pregunta">¿Sabías que hay más accidentes viales mortales que involucran autos deportivos que automóviles familiares?</p>
+                    <p class="card-text fz12" id="pregunta"></p>
                 </div>
             </div>
             <div class="card mt-2 border-0 qtn_da"></div>
@@ -32,15 +32,37 @@
         </div>
     </div>`
     }
-    let value_da = '1'
-    let qtn_da = '<span class="items">a)</span>  No debemos comprar automóviles deportivos porque tenemos más chances de morir en un accidente… y debemos viajar en autos familiares para estar seguros'
-    $('.qtn_da').html(cardQtns('qtn_da', qtn_da, value_da))
-    let value_db = '2'
-    let qtn_db = '<span class="items">b)</span> Las variables “tipo de automóvil” y “cantidad de accidentes mortales” están un poco relacionadas (pero no mucho) y, por eso, no tengo muchas más probabilidades de morir conduciendo un auto deportivo que uno familiar'
-    $('.qtn_db').html(cardQtns('qtn_db', qtn_db, value_db))
-    let value_dc = '3'
-    let qtn_dc = '<span class="items">c)</span> La estadística del enunciado es tramposa, porque no explicita un dato que puede generar la correlación sugerida: que los autos deportivos suelen ser conducidos por jóvenes que no temen al peligro, mientras que los autos familiares suelen ser conducidos por madres que son muy conservadoras al manejar.'
-    $('.qtn_dc').html(cardQtns('qtn_dc', qtn_dc, value_dc))
+    $.get('preguntas/preguntas.json')
+        .done(function (data) {
+            let item = data.preguntas.avanzados_d
+
+            let a_preg = (item.pregunta)
+            $('#pregunta').html(a_preg)
+            $('#texto').html(item.texto)
+
+            let value_da = '1'
+            let qtn_da = '<span class="items">a)</span> ' + item.a
+            $('.qtn_da').html(cardQtns('qtn_da', qtn_da, value_da))
+
+            let value_db = '2'
+            let qtn_db = '<span class="items">b)</span> ' + item.b
+            $('.qtn_db').html(cardQtns('qtn_db', qtn_db, value_db))
+
+            let value_dc = '3'
+            let qtn_dc = '<span class="items">c)</span> ' + item.c
+            $('.qtn_dc').html(cardQtns('qtn_dc', qtn_dc, value_dc))
+
+        });
+
+    // let value_da = '1'
+    // let qtn_da = '<span class="items">a)</span>  No debemos comprar automóviles deportivos porque tenemos más chances de morir en un accidente… y debemos viajar en autos familiares para estar seguros'
+    // $('.qtn_da').html(cardQtns('qtn_da', qtn_da, value_da))
+    // let value_db = '2'
+    // let qtn_db = '<span class="items">b)</span> Las variables “tipo de automóvil” y “cantidad de accidentes mortales” están un poco relacionadas (pero no mucho) y, por eso, no tengo muchas más probabilidades de morir conduciendo un auto deportivo que uno familiar'
+    // $('.qtn_db').html(cardQtns('qtn_db', qtn_db, value_db))
+    // let value_dc = '3'
+    // let qtn_dc = '<span class="items">c)</span> La estadística del enunciado es tramposa, porque no explicita un dato que puede generar la correlación sugerida: que los autos deportivos suelen ser conducidos por jóvenes que no temen al peligro, mientras que los autos familiares suelen ser conducidos por madres que son muy conservadoras al manejar.'
+    // $('.qtn_dc').html(cardQtns('qtn_dc', qtn_dc, value_dc))
   
 
     setTimeout(() => {

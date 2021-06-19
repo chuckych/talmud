@@ -9,7 +9,4 @@ function getHTML(url) {
             $(".container").html(data);
         })
 }
-// getHTML('fin.html')
 getHTML('inicio.html')
-// getHTML('preguntas/principiante_a.html')
-// getHTML('preguntas/avanzado_d.html')
