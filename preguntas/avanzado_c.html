@@ -64,21 +64,6 @@
             $('.qtn_cd').html(cardQtns('qtn_cd', qtn_cd, value_cd))
 
         });
-    // let value_ca = '1'
-    // let qtn_ca = '<span class="items">a)</span> La fuente de la ola de intoxicaciones es el restaurant “El Tío Bueno”.'
-    // $('.qtn_ca').html(cardQtns('qtn_ca', qtn_ca, value_ca))
-
-    // let value_cb = '2'
-    // let qtn_cb = '<span class="items">b)</span> El pescado fue la fuente de la ola de intoxicaciones'
-    // $('.qtn_cb').html(cardQtns('qtn_cb', qtn_cb, value_cb))
-
-    // let value_cc = '3'
-    // let qtn_cc = '<span class="items">c)</span> El restaurante “El Tío Bueno” fue clausurado por los inspectores.'
-    // $('.qtn_cc').html(cardQtns('qtn_cc', qtn_cc, value_cc))
-
-    // let value_cd = '4'
-    // let qtn_cd = 'Ninguna de las conclusiones puede ser inferida del recorte periodístico de manera confiable o segura.'
-    // $('.qtn_cd').html(cardQtns('qtn_cd', qtn_cd, value_cd))
 
     setTimeout(() => {
         $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')
@@ -98,9 +83,6 @@
                 if (data.status == "ok") {
                     $('#submit').prop('disabled', false)
                     getHTML('preguntas/avanzado_d.html')
-                    // $('#respuesta').html(`
-                    //     <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-success">`+ data.Mensaje + `</div>
-                    // `)
 
                 } else {
                     $('#submit').prop('disabled', false)

@@ -56,17 +56,6 @@
 
         });
 
-    // let value_ba = '1'
-    // let qtn_ba = '<span class="items">a)</span> Quienes presentan el sintoma X.'
-    // $('.qtn_ba').html(cardQtns('qtn_ba', qtn_ba, value_ba))
-    // let value_bb = '2'
-    // let qtn_bb = '<span class="items">b)</span> Quienes no presentan el sintoma X'
-    // $('.qtn_bb').html(cardQtns('qtn_bb', qtn_bb, value_bb))
-    // let value_bc = '3'
-    // let qtn_bc = '<span class="items">c)</span> Ambos pacientes tienen iguales chances de contraer la enfermedad A.'
-    // $('.qtn_bc').html(cardQtns('qtn_bc', qtn_bc, value_bc))
-
-
     setTimeout(() => {
         $('.progress').toggleClass('invisible animate__animated animate__fadeInDown')
     }, 700);
@@ -85,10 +74,6 @@
                 if (data.status == "ok") {
                     $('#submit').prop('disabled', false)
                     getHTML('preguntas/avanzado_c.html')
-                    // $('#respuesta').html(`
-                    //     <div class="p-2 mt-4 w100 text-center animate__animated animate__shakeX animate__slow bg-white shadow text-success">`+data.Mensaje+`</div>
-                    // `)
-
                 } else {
                     $('#submit').prop('disabled', false)
                     $('#respuesta').html(`

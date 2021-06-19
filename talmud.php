@@ -17,10 +17,7 @@
 
 <body class="bg-light">
     <input type="hidden" id="vjs" value="<?=vjs()?>">
-    <div class="container p-3 w-100">
-        
-
-    </div>
+    <div class="container p-3 w-100"></div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
